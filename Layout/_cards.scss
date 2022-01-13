@@ -1,0 +1,97 @@
+@use "../Utils/variables";
+
+.restaurant {
+    background-color: $reservation-background;
+    padding-bottom: 2rem;
+    h3 {
+    margin: 0%;
+    margin-top: 2rem;
+    padding: 1rem 0rem 1rem 1rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+    @media (min-width: variables.$breakpoint){
+        margin-left: 8%;
+        padding-left: 0rem;
+    }
+    }
+}
+.restaurant__cards{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 0rem 1rem 0rem 1rem;
+    .badge{
+        position: relative;
+    }
+    .badge::before{
+        content:"Nouveau";
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+        border-radius: 0.2rem;
+        height: 2.3rem;
+        width: 6rem;
+        display: grid;
+        place-items: center;
+        background-color: $color-tertiary;
+        color: darken($color: $color-tertiary, $amount: 40);
+        font-weight: 500;
+    }
+    @media (max-width: variables.$breakpoint){
+        grid-template-columns: repeat(1, 1fr);
+    }
+    @media (min-width: variables.$breakpoint){
+        margin-left: 8%;
+        margin-right: 8%;
+    }
+}
+.card{
+    &__image{
+        height: 15rem;
+        background-size: cover;
+        border-radius: 1rem 1rem 0rem 0rem;
+        background-position: center;
+    }
+    @for $i from 1 through 4 {
+        &__image--#{$i} {
+            background-image: url("../images/image--#{$i}.jpg");
+        }
+    }
+    &__description {
+        position: relative;
+        background-color: white;
+        border-radius: 0rem 0rem 1rem 1rem;
+        @include functionning-button;
+        h4{
+            margin: 0rem 0.7rem 0rem 0.7rem;
+            padding-top: 1rem;
+        }
+        p{
+            margin: 0.3rem 0.7rem 0rem 0.7rem;
+            padding-bottom: 1rem;
+        }
+        i{
+            position: absolute;
+            right: 1rem;
+            top: 1.5rem;
+            font-size: 1.5rem;
+        }
+        .far{
+            &:hover{
+                color: transparent;
+                opacity: 0;
+            }
+        }
+        .fas{
+            color: transparent;
+            transition: ease-out all 400ms;
+        }
+        i:hover{
+            transform: scale(1.3);
+            background-image: $button-gradient;
+            background-clip: text;
+            -webkit-background-clip: text;
+            opacity: 1;
+        }
+    }
+}
